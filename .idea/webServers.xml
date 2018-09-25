@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9a623c61-fdba-4bcf-a9da-cff329dcc509" name="www" url="http://local/minifight">
+        <fileTransfer port="0" mountedRoot="D:\www" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
