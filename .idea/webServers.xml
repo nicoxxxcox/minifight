@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="9a623c61-fdba-4bcf-a9da-cff329dcc509" name="www" url="http://local/minifight">
-        <fileTransfer port="0" mountedRoot="D:\www" accessType="MOUNT" />
+        <fileTransfer port="0" mountedRoot="D:\www\minifight" accessType="MOUNT" />
       </webServer>
     </option>
   </component>

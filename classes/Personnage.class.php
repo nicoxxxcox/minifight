@@ -37,26 +37,30 @@ class Personnage
      * @param Personnage $perso . object personnage
      * @return int|void
      */
-    public function frapper(Personnage $perso)
+    public function frapper($perso)
     {
-        // vérifier que l'on ne se frappe pas soit-même
-        if ($this->getId() == $this->_id) { //SI c'est le cas, on stoppe tout en revoyant un message
+        if ($perso->getId() == $this->_id)
+        {
             return self::CEST_MOI;
         }
-        // on indique au personnage frappé qu'il reçoit des dégats
+
+        // On indique au personnage qu'il doit recevoir des dégâts.
+        // Puis on retourne la valeur renvoyée par la méthode : self::PERSONNAGE_TUE ou self::PERSONNAGE_FRAPPE
         return $perso->recevoirDegats();
     }
 
     public function recevoirDegats()
     {
-        //on augmente les degats de 5.
         $this->_degats += 5;
-        if ($this->_degats >= 100) {// SI on à 100 de dégats on renvoit une valeur signifiant que le personnage à été tué
+
+        // Si on a 100 de dégâts ou plus, on dit que le personnage a été tué.
+        if ($this->_degats >= 100)
+        {
             return self::PERSONNAGE_TUE;
-            //SINON , renverra une valeur signifiant que le personnage à bien été frappé
-        } else {
-            return self::PERSONNAGE_FRAPPE;
         }
+
+        // Sinon, on se contente de dire que le personnage a bien été frappé.
+        return self::PERSONNAGE_FRAPPE;
     }
 
     //GETTERS
@@ -96,6 +100,11 @@ class Personnage
         if (is_string($nom)) {
             $this->_nom = $nom;
         }
+    }
+
+    public function nomValide()
+    {
+        return !empty($this->_nom);
     }
 
     /**
