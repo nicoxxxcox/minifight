@@ -58,7 +58,7 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) // Si on a voulu créer un p
             $retour = $perso->frapper($persoAFrapper); // On stocke dans $retour les éventuelles erreurs ou messages
             //	        // que renvoie la méthode frapper.
 
-	        var_dump($retour);
+
 
             switch ($retour) {
                 case Personnage::CEST_MOI :
