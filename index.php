@@ -1,10 +1,13 @@
 <?php
 // on charge l'auto loader pour charger automatiquement toutes nos classes sans require à chaques fois
+// **** autoloader : BEGIN
 require './classes/autoloader.class.php';
 autoloader::autoload();
+// **** autoloader : END
 
-session_start(); // On appelle session_start() APRÈS avoir enregistré l'autoload.
-
+// On appelle session_start() APRÈS avoir enregistré l'autoload.
+// SI on clique sur deconnexion on suppr la variable de session + on redirige vers la page sans parametres GET
+session_start();
 if (isset($_GET['deconnexion'])) {
     session_destroy();
     header('Location: .');
@@ -19,14 +22,14 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT); // On émet une alert
 // on instancie l'objet de la classe PersonnagesManager
 $manager = new PersonnagesManager($db);
 
-if (isset($_SESSION['perso'])) // Si la session perso existe, on restaure l'objet.
-{
+// Si la session perso existe, on restaure l'objet.
+if (isset($_SESSION['perso'])) {
     $perso = $_SESSION['perso'];
 }
 
-if (isset($_POST['creer']) && isset($_POST['nom'])) // Si on a voulu créer un personnage.
-{
-    $perso = new Personnage(['nom' => $_POST['nom']]); // On crée un nouveau personnage.
+// Si on a voulu créer un personnage.
+if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau personnage.
+    $perso = new Personnage(['nom' => $_POST['nom']]);
 
     if (!$perso->nomValide()) {
         $message = 'Le nom choisi est invalide.';
@@ -59,7 +62,6 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) // Si on a voulu créer un p
             //	        // que renvoie la méthode frapper.
 
 
-
             switch ($retour) {
                 case Personnage::CEST_MOI :
                     $message = 'Mais... pourquoi voulez-vous vous frapper ???';
@@ -84,69 +86,48 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) // Si on a voulu créer un p
         }
     }
 }
-?>
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<title>TP : Mini jeu de combat</title>
+?><!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/css?family=Londrina+Solid|Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<link rel="stylesheet" href="./css/app.css">
+	<title>Mini jeu de combat</title>
+</head>
+<body>
+<div class="wrapper">
+	<div class="container">
+		<h2 class="title-main">Non</h2>
+		<div class="row">
+			<div class="pill pill-number"><i class="fas fa-child"></i>  Personnages créés : <span
+						class="pill-info"><?= $manager->count()
+					?></span></div>
+			<div class="pill"><i class="fas fa-info-circle"></i>  <?php
+                if (isset($message)) // On a un message à afficher ?
+                {
+                    echo $message; // Si oui, on l'affiche.
+                } ?>
+			</div>
+		</div><?php
+				if (isset($perso)) // Si on utilise un personnage (nouveau ou pas).
+                {
+                    require './templates/game.php';
 
-		<meta charset="utf-8"/>
-	</head>
-	<body>
-	<p>Nombre de personnages créés : <?= $manager->count() ?></p>
-    <?php
-    if (isset($message)) // On a un message à afficher ?
-    {
-        echo '<p>', $message, '</p>'; // Si oui, on l'affiche.
-    }
-
-    if (isset($perso)) // Si on utilise un personnage (nouveau ou pas).
-    {
-        ?>
-		<p><a href="?deconnexion=1">Déconnexion</a></p>
-
-		<fieldset>
-			<legend>Mes informations</legend>
-			<p>
-				Nom : <?= htmlspecialchars($perso->getNom()) ?><br/>
-				Dégâts : <?= $perso->getDegats() ?>
-			</p>
-		</fieldset>
-
-		<fieldset>
-			<legend>Qui frapper ?</legend>
-			<p>
-                <?php
-                $persos = $manager->getList(/*$perso->getNom()*/);
-
-
-                if (empty($persos)) {
-                    echo 'Personne à frapper !';
                 } else {
-                    foreach ($persos as $unPerso) {
-                        echo '<a href="?frapper=' . $unPerso->getId() . '">' . htmlspecialchars($unPerso->getNom()) . '</a> (dégâts : ' . $unPerso->getDegats() . ')<br />';
-                    }
-                }
-                ?>
-			</p>
-		</fieldset>
-        <?php
-    } else {
-        ?>
-		<form action="" method="post">
-			<p>
-				Nom : <input type="text" name="nom" maxlength="50"/>
-				<input type="submit" value="Créer ce personnage" name="creer"/>
-				<input type="submit" value="Utiliser ce personnage" name="utiliser"/>
-			</p>
-		</form>
-        <?php
-    }
-    ?>
-	</body>
-	</html>
+                    require './templates/subscribe.php';
+                } ?>
+
+
+	</div>
+</div>
+</body>
+</html>
 <?php
 if (isset($perso)) // Si on a créé un personnage, on le stocke dans une variable session afin d'économiser une requête SQL.
 {
     $_SESSION['perso'] = $perso;
 }
+?>
