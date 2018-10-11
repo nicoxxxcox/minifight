@@ -14,6 +14,9 @@ if (isset($_GET['deconnexion'])) {
     exit();
 }
 
+
+
+
 // **** PDO : BEGIN
 $db = new PDO('mysql:host=localhost;dbname=test', 'root', '');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT); // On émet une alerte à chaque fois qu'une requête a échoué.
@@ -40,14 +43,20 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau p
     } else {
         $manager->addPerso($perso);
     }
-} elseif (isset($_POST['utiliser']) && isset($_POST['nom'])) // Si on a voulu utiliser un personnage.
-{
+    // Si on a voulu utiliser un personnage.
+} elseif (isset($_POST['utiliser']) && isset($_POST['nom'])) {
     if ($manager->existPerso($_POST['nom'])) // Si celui-ci existe.
     {
         $perso = $manager->getPerso($_POST['nom']);
     } else {
         $message = 'Ce personnage n\'existe pas !'; // S'il n'existe pas, on affichera ce message.
     }
+} elseif (isset($_POST['pill-nom'])) {
+
+
+    $perso = $manager->getPerso($_POST['pill-nom']);
+
+
 } elseif (isset($_GET['frapper'])) // Si on a cliqué sur un personnage pour le frapper.
 {
     if (!isset($perso)) {
@@ -68,7 +77,7 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau p
                     break;
 
                 case Personnage::PERSONNAGE_FRAPPE :
-                    $message = 'Le personnage a bien été frappé !';
+                    $message = 'Le personnage ' . $persoAFrapper->getNom() . ' a bien été frappé !';
 
                     $manager->update($perso);
                     $manager->update($persoAFrapper);
@@ -89,40 +98,50 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau p
 ?><!doctype html>
 <html lang="fr">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link href="https://fonts.googleapis.com/css?family=Londrina+Solid|Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<link rel="stylesheet" href="./css/app.css">
-	<title>Mini jeu de combat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Londrina+Solid|Source+Sans+Pro:400,400i,600,600i,700,700i"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/app.css">
+    <title>Mini jeu de combat</title>
 </head>
 <body>
 <div class="wrapper">
-	<div class="container">
-		<h2 class="title-main">Non</h2>
-		<div class="row">
-			<div class="pill pill-number"><i class="fas fa-child"></i>  Personnages créés : <span
-						class="pill-info"><?= $manager->count()
-					?></span></div>
-			<div class="pill"><i class="fas fa-info-circle"></i>  <?php
-                if (isset($message)) // On a un message à afficher ?
-                {
-                    echo $message; // Si oui, on l'affiche.
-                } ?>
-			</div>
-		</div><?php
-				if (isset($perso)) // Si on utilise un personnage (nouveau ou pas).
-                {
-                    require './templates/game.php';
+    <div class="container">
+        <h2 class="title-main">N</h2>
+        <div class="row">
+            <div class="pill pill-number pill-count"> Personnages créés : <span
+                        class="pill-info"><?= $manager->count()
+                    ?> <i class="fas fa-child"></i></span></div>
 
-                } else {
-                    require './templates/subscribe.php';
-                } ?>
+            <?php
+            if (isset($message)) // On a un message à afficher ?
+            {
+                echo '<div class="pill">
+                            <i class="fas fa-info-circle"></i> '
+                    . $message . // Si oui, on l\'affiche.
+                    '</div>';
+
+            } ?>
+
+        </div><?php
+        if (isset($perso)) // Si on utilise un personnage (nouveau ou pas).
+        {
+            require './templates/game.php';
+
+        } else {
+            require './templates/subscribe.php';
+        } ?>
 
 
-	</div>
+    </div>
 </div>
+
+<script src="./js/app.js" type="application/javascript"></script>
 </body>
 </html>
 <?php

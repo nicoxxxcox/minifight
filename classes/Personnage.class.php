@@ -63,10 +63,17 @@ class Personnage
         return self::PERSONNAGE_FRAPPE;
     }
 
+
+
     //GETTERS
     public function getDegats()
     {
         return $this->_degats;
+    }
+
+    public function getVie()
+    {
+        return 100 - $this->_degats;
     }
 
     public function getNom()
