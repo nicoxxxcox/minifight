@@ -102,16 +102,55 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau p
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Londrina+Solid|Source+Sans+Pro:400,400i,600,600i,700,700i"
-          rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700,900|Source+Sans+Pro" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/app.css">
     <title>Mini jeu de combat</title>
 </head>
 <body>
-<div class="wrapper">
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="./assets/logo.svg" width="60" height="60" class="d-inline-block align-middle" alt="">
+                <span class="brand-name">Kill Your Friend</span>
+            </a>
+
+            <div class="pill pill-count mr-sm-2"><span class="pill-count-number"><?= $manager->count() ?></span> soldats
+                créés
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
     <div class="container">
+
+        <div class="row justify-content-md-center">
+            <div class="col col-md-8 box-game" >
+
+                <div class="row notifications-line  ">
+                    <div class="col-md-12 justify-content-between align-items-center">
+                        <img src="./assets/envelope.svg" alt="">
+                        <div class="pill pill-count "><span class="pill-count-number"><?= $manager->count() ?></span> soldats
+                            créés
+                        </div>
+                    </div>
+
+
+                </div>
+
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid amet, asperiores, aspernatur deleniti earum ex explicabo hic incidunt inventore ipsum molestiae officia repellendus, rerum similique sunt voluptatem. Molestiae, odio.
+            </div>
+
+        </div>
+
+
         <h2 class="title-main">Δ</h2>
         <div class="row">
             <div class="pill pill-number pill-count"> Personnages créés : <span
@@ -139,7 +178,7 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau p
 
 
     </div>
-</div>
+
 
 <script src="./js/app.js" type="application/javascript"></script>
 </body>

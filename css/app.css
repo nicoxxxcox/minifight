@@ -1,7 +1,11 @@
-
+/* GENERAL */
 html, body, * {
     font-family: 'Source Sans Pro', sans-serif;
     box-sizing: border-box;
+}
+
+body{
+    background : #CCCC99;
 }
 
 a:link {
@@ -13,20 +17,28 @@ a:visited {
     color: inherit;
 }
 
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 1rem;
-    background: #f4f4f4;
-
-    /* border: 1px solid green; */
-}
-
 input {
     border-radius: 3rem;
     border: 1px solid #cacaca;
     padding: .3rem .8rem;
 }
+
+/* HEADER */
+
+.navbar{
+    background: #FFFFFF;
+    border-bottom: 2px solid #cccccc;
+}
+
+.brand-name{
+    font-family: "Raleway",sans-serif;
+    color : #003366;
+    font-size: 1.125rem;
+    font-weight: 900;
+}
+
+
+
 
 .title-main {
     font-family: 'Londrina Solid', cursive;
@@ -37,11 +49,20 @@ input {
 
 }
 
-.row {
 
-    padding: 1rem 0;
-    vertical-align: top;
+/* BOX GAME */
+
+.box-game{
+    background : #ffffff;
+    border-radius : .3125rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    margin-top: 6.25rem;
 }
+
+.notifications-line{
+    border-bottom: 2px dashed #cccccc ;
+}
+
 
 .name-pers {
     display: inline-block;
@@ -49,7 +70,8 @@ input {
 
 .pill {
     display: inline-block;
-    font-weight: 900;
+    font-weight: 700;
+    font-family: "Raleway",sans-serif;
     letter-spacing: .08rem;
     color: #fff;
     background: #000;
@@ -58,10 +80,24 @@ input {
 }
 
 .pill-info {
-    background: blueviolet;
+    background: #003366;
+    color: #ffffff;
     overflow: hidden;
     border-radius: 3rem;
     padding: .08rem .5rem;
+}
+
+.pill-count{
+    background: #CCCC99;
+}
+
+.pill-count-number {
+    background: #003366;
+    font-family: "Raleway",sans-serif;
+    color: #ffffff;
+    overflow: hidden;
+    border-radius: 3rem;
+    padding: .08rem .4rem;
 }
 
 .pill-form {
@@ -85,9 +121,7 @@ input {
     background: darkred;
 }
 
-.pill-count {
-    background: darkblue;
-}
+
 
 .btn {
     color: #fff;
