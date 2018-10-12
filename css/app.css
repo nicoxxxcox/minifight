@@ -30,9 +30,10 @@ input {
 
 .title-main {
     font-family: 'Londrina Solid', cursive;
-    font-size: 3rem;
+    font-size: 6rem;
     text-transform: uppercase;
     text-align: center;
+    margin : 0rem;
 
 }
 
@@ -66,13 +67,14 @@ input {
 .pill-form {
     display: inline-block;
     margin: 0 .2rem;
-    cursor: url(''), auto;
+    cursor: url(../assets/cat.png), auto;
     border: 2px solid #ffffff;
 }
 
-.pill-form:hover {
+.pill-form:hover , .pill-deconnexion:hover {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23);
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    cursor: url(../assets/cat.png), auto;
 }
 
 .pill-form:active {
@@ -113,7 +115,7 @@ legend {
 
 .clignote {
     color: red;
-    font-size: 1.1rem;
+
 }
 
 .icn-life:before {

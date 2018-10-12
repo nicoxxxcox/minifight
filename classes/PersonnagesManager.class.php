@@ -50,10 +50,22 @@ class PersonnagesManager
             // Exécution d'une requête COUNT() avec une clause WHERE, et retourne un boolean.
             $q = $this->_db->prepare('SELECT COUNT(*) FROM persos WHERE nom = :nom');
             $q->execute([':nom' => $info]);
+            //si il retourne true c'est que le nom existe
             return (bool)$q->fetchColumn();
+        /*
+                nom
+        +-----------------+
+        |     |: nom|     | <---+  fetchColumn(); WHERE nom = :nom
+        +-----------------+
+        |     |     |     |
+        |     |  x  |     | <---+
+        +-----+-----+-----+
+        */
+
     }
 
-    // compte les degats
+
+    // compte le nombre de personnages créés
     public function count()
     {
         // execute une requete COUNT() et retourne le nombre de resultats retournés

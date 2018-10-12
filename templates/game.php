@@ -3,7 +3,7 @@
 
     <fieldset class="fieldset-info">
         <legend>Mes informations</legend>
-        <div class="pill-form pill pill-pers">Moi : <?= htmlspecialchars($perso->getNom()) ?>
+        <div class="pill-form pill">Moi : <?= htmlspecialchars($perso->getNom()) ?>
             <span id="icn" class="icn-life">  <?= $perso->getVie() ?></span>
         </div>
     </fieldset >
@@ -16,9 +16,8 @@
                 echo 'Personne à frapper !';
             } else {
                 foreach ($persos as $unPerso) {
-
                     echo '
-                <div class="pill-form pill pill-pers">
+                <div class="pill-form pill ">
                     <i class="fas fa-child"></i> 
                     <a href="?frapper=' . $unPerso->getId() . '">  ' . htmlspecialchars($unPerso->getNom()) . '   <span class="icn-life"> ' . $unPerso->getVie() . '</span></a><br />
                 </div>';

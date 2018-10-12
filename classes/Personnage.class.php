@@ -21,6 +21,10 @@ class Personnage
         $this->hydrate($datas);
     }
 
+    /**
+     * Fonction qui créé automatiquement les fonctions de setter
+     * @param array $datas
+     */
     public function hydrate(array $datas)
     {
         foreach ($datas as $key => $value) {   // on recupère le nom du setter correspondant à l'attribut

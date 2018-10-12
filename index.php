@@ -112,7 +112,7 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau p
 <body>
 <div class="wrapper">
     <div class="container">
-        <h2 class="title-main">N</h2>
+        <h2 class="title-main">Δ</h2>
         <div class="row">
             <div class="pill pill-number pill-count"> Personnages créés : <span
                         class="pill-info"><?= $manager->count()
