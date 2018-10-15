@@ -1,44 +1,54 @@
-<?php
 
-?>
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <img class="mr-1" src="./assets/info.svg" alt="information"><span class="game-info"> Créez votre soldat ou choisisez en un existant </span>
+        <div class="row">
+            <div class="col">
+                <form action="" class="form-group" method="post">
+                    <input type="text" class="game-form-field" name="nom" placeholder="Nom du soldat"
+                           maxlength="50"/>
+                    <br>
+                    <input type="submit" class="game-form-submit" value="Créer ce personnage" name="creer"/>
+                </form>
+                <span class="game-text">ou choisisez en un déjà en service</span>
 
-<div class="row"><?php
-    $persos = $manager->getList(/*$perso->getNom()*/);
-    if (empty($persos)) {
-        echo 'Aucuns personnages créé. ';
-    } else {
+                <div class="row mb-5">
+                    <div class="col mt-3">
+                        <?php
+                        $persos = $manager->getList(/*$perso->getNom()*/);
+                        if (empty($persos)) {
+                            echo 'Aucuns personnages créé. ';
+                        } else {
 
-        foreach ($persos as $unPerso) {
+                            foreach ($persos as $unPerso) {
 
-            // fonction de ramdminsation des couleurs
-            $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
-            $color = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
 
-            echo '<form id ="'. $unPerso->getId() .'" class="pill-form pill pill-pers " method="post" style="background-color: '.$color.'!important;">
-                    <div class="">       
-                        <i class="fas fa-child"></i>             
-                        <div class="name-pers" onclick="document.getElementById(\''.$unPerso->getId().'\').submit();" >'. $unPerso->getNom().'</div>                    
+
+                                echo '<form id ="'. $unPerso->getId() .'" class="form-pers" method="post">
+                    
+                            
+                                    
+                        <div class="btn  btn-pers mr-2 mb-3 " onclick="document.getElementById(\''.$unPerso->getId().'\').submit();" >'. $unPerso->getNom().'</div>                    
                         <input  type="text" name="pill-nom" hidden value="'. $unPerso->getNom() .'" >                    
-                    </div>           
+                              
                <input  type="submit" hidden  >
             </form>';
-        }
+                            }
+                        }
+                        if (isset($_POST['choix'])) // Si on a voulu utiliser un personnage.
+                        {
+                            $manager->addPerso($perso);
+                        }
+                        ?>
 
-    }
+                    </div>
+                </div>
 
-     if (isset($_POST['choix'])) // Si on a voulu utiliser un personnage.
-     {
-         $manager->addPerso($perso);
-     }
-    ?></div>
-<div class="row">
 
-	<form action="" method="post">
-		<p>
-			Nom : <input type="text" name="nom" maxlength="50"/>
-			<input type="submit" value="Créer ce personnage" name="creer"/>
-			<input type="submit" value="Utiliser ce personnage" name="utiliser"/>
-		</p>
-	</form>
-
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<div class="row"></div>

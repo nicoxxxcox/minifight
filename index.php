@@ -44,13 +44,6 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau p
         $manager->addPerso($perso);
     }
     // Si on a voulu utiliser un personnage.
-} elseif (isset($_POST['utiliser']) && isset($_POST['nom'])) {
-    if ($manager->existPerso($_POST['nom'])) // Si celui-ci existe.
-    {
-        $perso = $manager->getPerso($_POST['nom']);
-    } else {
-        $message = 'Ce personnage n\'existe pas !'; // S'il n'existe pas, on affichera ce message.
-    }
 } elseif (isset($_POST['pill-nom'])) {
 
 
@@ -77,7 +70,7 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau p
                     break;
 
                 case Personnage::PERSONNAGE_FRAPPE :
-                    $message = 'Le personnage ' . $persoAFrapper->getNom() . ' a bien été frappé !';
+                    $message = ' Le personnage  <span class="notifications-name"> ' . $persoAFrapper->getNom() . '</span> a bien été frappé !';
 
                     $manager->update($perso);
                     $manager->update($persoAFrapper);
@@ -118,6 +111,7 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau p
             <a class="navbar-brand" href="#">
                 <img src="./assets/logo.svg" width="60" height="60" class="d-inline-block align-middle" alt="">
                 <span class="brand-name">Kill Your Friend</span>
+
             </a>
 
             <div class="pill pill-count mr-sm-2"><span class="pill-count-number"><?= $manager->count() ?></span> soldats
@@ -128,56 +122,56 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau p
 </header>
 
 
+<div class="container">
 
-    <div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-md-8 box-game">
 
-        <div class="row justify-content-md-center">
-            <div class="col col-md-8 box-game" >
+            <div class="row align-items-center notifications-line  ">
+                <div class="col-md-8 ">
+                    <img class="notifications-img" src="./assets/envelope.svg" alt="">
+                    <?php
+                    if (isset($message)) // On a un message à afficher ?
+                    {
+                        echo '<div class="notifications-msg"> : ' . $message . // Si oui, on l\'affiche.
+                            '</div>';
 
-                <div class="row notifications-line  ">
-                    <div class="col-md-12 justify-content-between align-items-center">
-                        <img src="./assets/envelope.svg" alt="">
-                        <div class="pill pill-count "><span class="pill-count-number"><?= $manager->count() ?></span> soldats
-                            créés
-                        </div>
-                    </div>
-
+                    } ?>
 
                 </div>
 
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid amet, asperiores, aspernatur deleniti earum ex explicabo hic incidunt inventore ipsum molestiae officia repellendus, rerum similique sunt voluptatem. Molestiae, odio.
+                <div class="col-md-4 ">
+                    <?php
+                    // on vérifie que $perso est instancié pour afficher le bouton de déconnexion
+                    if (isset($perso)) {
+                        echo ' <a  href="?deconnexion=1"><div class="pill pill-deconnexion  ml-auto" >
+                               Déconnexion
+                                </div></a> ';
+                    }
+                    ?>
+                </div>
             </div>
+            <div class="row py-5">
+                <img class="mx-auto d-block " src="./assets/swords.svg" alt="">
+            </div>
+
+            <?php
+            if (isset($perso)) // Si on utilise un personnage (nouveau ou pas).
+            {
+                require './templates/game.php';
+
+            } else {
+                require './templates/subscribe.php';
+            } ?>
+
 
         </div>
 
-
-        <h2 class="title-main">Δ</h2>
-        <div class="row">
-            <div class="pill pill-number pill-count"> Personnages créés : <span
-                        class="pill-info"><?= $manager->count()
-                    ?> <i class="fas fa-child"></i></span></div>
-
-            <?php
-            if (isset($message)) // On a un message à afficher ?
-            {
-                echo '<div class="pill">
-                            <i class="fas fa-info-circle"></i> '
-                    . $message . // Si oui, on l\'affiche.
-                    '</div>';
-
-            } ?>
-
-        </div><?php
-        if (isset($perso)) // Si on utilise un personnage (nouveau ou pas).
-        {
-            require './templates/game.php';
-
-        } else {
-            require './templates/subscribe.php';
-        } ?>
-
-
     </div>
+
+
+
+</div>
 
 
 <script src="./js/app.js" type="application/javascript"></script>
