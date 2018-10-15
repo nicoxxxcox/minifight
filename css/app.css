@@ -1,11 +1,11 @@
-/* GENERAL */
+/* ## GENERAL ##*/
 html, body, * {
     font-family: 'Source Sans Pro', sans-serif;
     box-sizing: border-box;
 }
 
-body{
-    background : #CCCC99;
+body {
+    background: #CCCC99;
 }
 
 a:link {
@@ -17,61 +17,12 @@ a:visited {
     color: inherit;
 }
 
-input {
-    border-radius: 3rem;
-    border: 1px solid #cacaca;
-    padding: .3rem .8rem;
-}
-
-/* HEADER */
-
-.navbar{
-    background: #FFFFFF;
-    border-bottom: 2px solid #cccccc;
-}
-
-.brand-name{
-    font-family: "Raleway",sans-serif;
-    color : #003366;
-    font-size: 1.125rem;
-    font-weight: 900;
-}
-
-
-
-
-.title-main {
-    font-family: 'Londrina Solid', cursive;
-    font-size: 6rem;
-    text-transform: uppercase;
-    text-align: center;
-    margin : 0rem;
-
-}
-
-
-/* BOX GAME */
-
-.box-game{
-    background : #ffffff;
-    border-radius : .3125rem;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-    margin-top: 6.25rem;
-}
-
-.notifications-line{
-    border-bottom: 2px dashed #cccccc ;
-}
-
-
-.name-pers {
-    display: inline-block;
-}
+/* ## OBJECT ## */
 
 .pill {
     display: inline-block;
     font-weight: 700;
-    font-family: "Raleway",sans-serif;
+    font-family: "Raleway", sans-serif;
     letter-spacing: .08rem;
     color: #fff;
     background: #000;
@@ -87,13 +38,13 @@ input {
     padding: .08rem .5rem;
 }
 
-.pill-count{
+.pill-count {
     background: #CCCC99;
 }
 
 .pill-count-number {
     background: #003366;
-    font-family: "Raleway",sans-serif;
+    font-family: "Raleway", sans-serif;
     color: #ffffff;
     overflow: hidden;
     border-radius: 3rem;
@@ -103,49 +54,171 @@ input {
 .pill-form {
     display: inline-block;
     margin: 0 .2rem;
-    cursor: url(../assets/cat.png), auto;
+    cursor: pointer;
     border: 2px solid #ffffff;
 }
 
-.pill-form:hover , .pill-deconnexion:hover {
+.pill-form:hover, .pill-deconnexion:hover, .game-form-submit:hover {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23);
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-    cursor: url(../assets/cat.png), auto;
+
 }
 
-.pill-form:active {
+.pill-form:active, .game-form-submit:active {
     transform: translateY(.2rem);
 }
 
 .pill-deconnexion {
-    background: darkred;
+    background: #003366;
+    font-weight: 700;
+    font-family: "Raleway", sans-serif;
+    float : right;
 }
 
+/* ## HEADER ## */
 
-
-.btn {
-    color: #fff;
+.navbar {
+    background: #FFFFFF;
+    border-bottom: 2px solid #cccccc;
 }
 
-legend {
-    font-size: 1.2rem;
+.brand-name {
+    font-family: "Raleway", sans-serif;
+    color: #003366;
+    font-size: 1.125rem;
     font-weight: 900;
+}
+
+.title-main {
+    font-family: 'Londrina Solid', cursive;
+    font-size: 6rem;
     text-transform: uppercase;
+    text-align: center;
+    margin: 0rem;
+
 }
 
-.fieldset-info {
-    border: 2px dashed blueviolet;
+/* ## BOX GAME ## */
+
+/* layout */
+
+.box-game {
     background: #ffffff;
-    border-radius: .5rem;
+    border-radius: .3125rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    margin-top: 6.25rem;
 }
 
-.fieldset-frapper {
+.notifications-line {
+    border-bottom: 2px dashed #cccccc;
+}
 
-    border: 2px solid blueviolet;
-    background: #ffffff;
-    border-radius: .5rem;
+.notifications-msg {
+    display: inline-block;
+
+    font-weight: 700;
+    font-family: "Raleway", sans-serif;
+    color: #003366;
+
+    margin: .7rem 0 .7rem 0;
+}
+
+.notifications-img {
+    margin: .7rem 0 .9rem 0;
+}
+
+.notifications-name {
+    color: #EFBB6A;
+    font-weight: 700;
+    font-family: "Raleway", sans-serif;
+}
+
+/* game */
+
+.game-info {
+    color: #cccccc;
+    font-size: 1rem;
+}
+
+.game-form-field {
+    border-radius: 3rem;
+    border: 1px solid #cacaca;
+    padding: .3rem .8rem;
+    margin: 1rem 0 0 0;
+}
+
+.game-form-submit {
+    border-radius: 3rem;
+    border: none;
+    padding: .3rem .8rem;
+    margin: .5rem 0;
+    cursor: pointer;
+
+    background: #003366;
+    color: #fff;
+    font-weight: 700;
+    font-family: "Raleway", sans-serif;
+}
+
+.game-text {
+    color: #003366;
+}
+
+.form-pers {
+    display: inline-block
+}
+
+.btn-pers {
+    background: #EFBB6A;
+    border: 2px solid #003366;
+    color: #003366;
+
+    border-radius: .3125rem;
+    font-weight: 700;
+    font-family: "Raleway", sans-serif;
+}
+
+.btn-pers:hover {
+    background: #003366;
+    color: #fff;
+    border: 2px solid #003366;
+
 
 }
+
+.btn-pers:before {
+    content: url(../assets/angry.svg);
+    display: inline-block;
+    padding-top: 5px;
+    width: 25px;
+}
+
+.pers-line {
+
+    padding-bottom: 1rem;
+    border-bottom: 2px dashed #cccccc;
+}
+
+.pers-name{
+    font-size: 1.2rem;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    color : #003366;
+    text-transform: uppercase;
+    
+}
+
+.pers-life{
+    font-size: 1.2rem;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+    color : #003366;
+
+
+}
+
+
+
 
 .clignote {
     color: red;
