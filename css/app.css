@@ -72,7 +72,7 @@ a:visited {
     background: #003366;
     font-weight: 700;
     font-family: "Raleway", sans-serif;
-    float : right;
+    float: right;
 }
 
 /* ## HEADER ## */
@@ -183,14 +183,13 @@ a:visited {
     color: #fff;
     border: 2px solid #003366;
 
-
 }
 
-.btn-pers:before {
-    content: url(../assets/angry.svg);
-    display: inline-block;
-    padding-top: 5px;
-    width: 25px;
+.btn-pers::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    content: "\f556 ";
+    font-size: 1.2rem;
 }
 
 .pers-line {
@@ -199,26 +198,22 @@ a:visited {
     border-bottom: 2px dashed #cccccc;
 }
 
-.pers-name{
+.pers-name {
     font-size: 1.2rem;
     font-family: "Raleway", sans-serif;
     font-weight: 900;
-    color : #003366;
+    color: #003366;
     text-transform: uppercase;
-    
+
 }
 
-.pers-life{
+.pers-life {
     font-size: 1.2rem;
     font-family: "Raleway", sans-serif;
     font-weight: 400;
-    color : #003366;
-
+    color: #003366;
 
 }
-
-
-
 
 .clignote {
     color: red;

@@ -33,12 +33,11 @@ if (isset($_SESSION['perso'])) {
 // Si on a voulu créer un personnage.
 if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau personnage.
     $perso = new Personnage(['nom' => $_POST['nom']]);
-
     if (!$perso->nomValide()) {
         $message = 'Le nom choisi est invalide.';
         unset($perso);
     } elseif ($manager->existPerso($perso->getNom())) {
-        $message = 'Le nom du personnage est déjà pris.';
+        $message = 'Le nom du personnage <span class="notifications-name">'. $_POST['nom'] .'</span> est déjà pris.';
         unset($perso);
     } else {
         $manager->addPerso($perso);
@@ -78,7 +77,7 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau p
                     break;
 
                 case Personnage::PERSONNAGE_TUE :
-                    $message = 'Vous avez tué ce personnage !';
+                    $message = 'Vous avez tué le soldat !';
 
                     $manager->update($perso);
                     $manager->delPerso($persoAFrapper);

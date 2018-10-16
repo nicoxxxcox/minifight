@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-md-10 mx-auto">
         <img class="mr-1" src="./assets/info.svg" alt="information"><span class="game-info"> Créez votre soldat ou choisisez en un existant </span>
@@ -21,15 +20,11 @@
                         } else {
 
                             foreach ($persos as $unPerso) {
-
-
-
-                                echo '<form id ="'. $unPerso->getId() .'" class="form-pers" method="post">
-                    
+                                echo '<form id ="' . $unPerso->getId() . '" class="form-pers" method="post">             
                             
                                     
-                        <div class="btn  btn-pers mr-2 mb-3 " onclick="document.getElementById(\''.$unPerso->getId().'\').submit();" >'. $unPerso->getNom().'</div>                    
-                        <input  type="text" name="pill-nom" hidden value="'. $unPerso->getNom() .'" >                    
+                        <div class="btn  btn-pers mr-2 mb-3 " onclick="document.getElementById(\'' . $unPerso->getId() . '\').submit();" >  ' . $unPerso->getNom() . '</div>                    
+                        <input  type="text" name="pill-nom" hidden value="' . $unPerso->getNom() . '" >                    
                               
                <input  type="submit" hidden  >
             </form>';
