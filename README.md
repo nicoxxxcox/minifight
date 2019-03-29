@@ -1,1 +1,1 @@
- 	![Screenshot](https://github.com/nicoxxxcox/minifight/blob/master/Screenshot.png)
+ 	![Screenshot](https://github.com/nicoxxxcox/minifight/raw/master/Screenshot.png)
