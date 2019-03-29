@@ -3,14 +3,12 @@
 class Personnage
 {
 
-    private $_id;
-    private $_nom;
-    private $_degats;
-
-
     const CEST_MOI = 1;
     const PERSONNAGE_TUE = 2;
     const PERSONNAGE_FRAPPE = 3;
+    private $_id;
+    private $_nom;
+    private $_degats;
 
     /**
      * Personnage constructor. Hydrate les propriétés avec un tableau
@@ -43,8 +41,7 @@ class Personnage
      */
     public function frapper($perso)
     {
-        if ($perso->getId() == $this->_id)
-        {
+        if ($perso->getId() == $this->_id) {
             return self::CEST_MOI;
         }
 
@@ -53,13 +50,31 @@ class Personnage
         return $perso->recevoirDegats();
     }
 
+    public function getId()
+    {
+        return $this->_id;
+    }
+
+
+    //GETTERS
+
+    /**
+     * @param $id
+     */
+    public function setId($id)
+    {
+        $id = (int)$id;
+        if ($id > 0) {
+            $this->_id = $id;
+        }
+    }
+
     public function recevoirDegats()
     {
         $this->_degats += 5;
 
         // Si on a 100 de dégâts ou plus, on dit que le personnage a été tué.
-        if ($this->_degats >= 100)
-        {
+        if ($this->_degats >= 100) {
             return self::PERSONNAGE_TUE;
         }
 
@@ -67,30 +82,10 @@ class Personnage
         return self::PERSONNAGE_FRAPPE;
     }
 
-
-
-    //GETTERS
     public function getDegats()
     {
         return $this->_degats;
     }
-
-    public function getVie()
-    {
-        return 100 - $this->_degats;
-    }
-
-    public function getNom()
-    {
-        return $this->_nom;
-    }
-
-    public function getId()
-    {
-        return $this->_id;
-    }
-
-    //SETTERS
 
     /**
      * @param $degats
@@ -101,6 +96,18 @@ class Personnage
         if ($degats >= 0 && $degats <= 100) {
             $this->_degats = $degats;
         }
+    }
+
+    //SETTERS
+
+    public function getVie()
+    {
+        return 100 - $this->_degats;
+    }
+
+    public function getNom()
+    {
+        return strip_tags($this->_nom);
     }
 
     /**
@@ -115,17 +122,6 @@ class Personnage
 
     public function nomValide()
     {
-        return !empty($this->_nom);
-    }
-
-    /**
-     * @param $id
-     */
-    public function setId($id)
-    {
-        $id = (int)$id;
-        if ($id > 0) {
-            $this->_id = $id;
-        }
+        return !empty(strip_tags($this->_nom));
     }
 }

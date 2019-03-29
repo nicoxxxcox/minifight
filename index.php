@@ -14,9 +14,6 @@ if (isset($_GET['deconnexion'])) {
     exit();
 }
 
-
-
-
 // **** PDO : BEGIN
 $db = new PDO('mysql:host=localhost;dbname=test', 'root', '');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT); // On émet une alerte à chaque fois qu'une requête a échoué.
@@ -165,12 +162,18 @@ if (isset($_POST['creer']) && isset($_POST['nom'])) {   // On crée un nouveau p
 
 
         </div>
-
     </div>
-
-
-
 </div>
+
+<footer class="footer-line">
+    <div class="row">
+        <div class="col py-2">
+            <p>Made with love
+                by <span class="">Nicolas Grissi</span> <br>
+                Source php exemple <a href="">here</a></p>
+        </div>
+    </div>
+</footer>
 
 
 <script src="./js/app.js" type="application/javascript"></script>

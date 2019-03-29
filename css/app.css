@@ -107,6 +107,8 @@ a:visited {
     border-radius: .3125rem;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
     margin-top: 6.25rem;
+    margin-bottom: 4rem;
+
 }
 
 .notifications-line {
@@ -225,4 +227,12 @@ a:visited {
     font-weight: 900;
     content: "\f004";
     color: red;
+}
+
+.footer-line{
+    background : #ffffff;
+    text-align: center;
+    color: #EFBB6A;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
 }
